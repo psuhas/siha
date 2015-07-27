@@ -10,7 +10,7 @@ serialPort.open(function (error) {
   } else {
     console.log('open');
     serialPort.on('data', function(data) {
-      //console.log('data received: ' + data);
+      console.log('data received: ' + data);
 
       var t = data.toString().match(/::::(.*);;(.*)::::/);
       //console.log('Match: ',t);
@@ -26,7 +26,13 @@ serialPort.open(function (error) {
     });
     */
 
-    //setInterval();
+    setInterval(function(){
+			console.log("Sending Msg: :2;3;N:");
+	    serialPort.write(":2;3;N:\r\n", function(err, results) {
+	      console.log('err ' + err);
+	      console.log('results ' + results);
+	    });
+	  },10000);
   }
 });
 
